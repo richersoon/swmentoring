@@ -1,97 +1,137 @@
 package com.scratchwerk.models;
 
-import java.util.ArrayList;
-import java.util.Date;
+import com.scratchwerk.dto.StudentRequestDto;
+import org.bson.types.ObjectId;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-public class Student extends User {
-	
-	private int studentID;
-	private Date dob;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+
+@Document(collection = Student.COLLECTION_NAME)
+public class Student {
+
+    public static final String COLLECTION_NAME = "students";
+
+    @Id
+	private ObjectId id;
+	private String firstName;
+	private String lastName;
+	private String email;
+	private String suffix;
+	private String password;
+
+	private LocalDateTime dob;
 	private String school;
 	private int grade;
 	private ArrayList tasks;
 	private ArrayList reportCards;
 	private ArrayList progressReports;
+	private String fatherId;
+
+	private String motherId;
+	private String guardianId1;
+	private String guardianId2;
+
 	private Address address;
-	
-	private Parent father;
-	private Parent mother;
-	private Parent guardian1;
-	private Parent guardian2;
-	
-	public int getStudentID() {
-		return studentID;
+
+	private Integer roleId = 1;
+
+	public ObjectId getId() {
+		return id;
 	}
-	public void setStudentID(int studentID) {
-		this.studentID = studentID;
+
+	public String getFirstName() {
+		return firstName;
 	}
-	public Date getDob() {
+
+	public String getLastName() {
+		return lastName;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public String getSuffix() {
+		return suffix;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public LocalDateTime getDob() {
 		return dob;
 	}
-	public void setDob(Date dob) {
-		this.dob = dob;
-	}
+
 	public String getSchool() {
 		return school;
 	}
-	public void setSchool(String school) {
-		this.school = school;
-	}
+
 	public int getGrade() {
 		return grade;
 	}
-	public void setGrade(int grade) {
-		this.grade = grade;
-	}
+
 	public ArrayList getTasks() {
 		return tasks;
 	}
-	public void setTasks(ArrayList tasks) {
-		this.tasks = tasks;
-	}
+
 	public ArrayList getReportCards() {
 		return reportCards;
 	}
-	public void setReportCards(ArrayList reportCards) {
-		this.reportCards = reportCards;
-	}
+
 	public ArrayList getProgressReports() {
 		return progressReports;
 	}
-	public void setProgressReports(ArrayList progressReports) {
-		this.progressReports = progressReports;
-	}
+
 	public Address getAddress() {
 		return address;
 	}
-	public void setAddress(Address address) {
-		this.address = address;
-	}
-	public Parent getFather() {
-		return father;
-	}
-	public void setFather(Parent father) {
-		this.father = father;
-	}
-	public Parent getMother() {
-		return mother;
-	}
-	public void setMother(Parent mother) {
-		this.mother = mother;
-	}
-	public Parent getGuardian1() {
-		return guardian1;
-	}
-	public void setGuardian1(Parent guardian1) {
-		this.guardian1 = guardian1;
-	}
-	public Parent getGuardian2() {
-		return guardian2;
-	}
-	public void setGuardian2(Parent guardian2) {
-		this.guardian2 = guardian2;
-	}
-	
 
-	
+	public String getFatherId() {
+		return fatherId;
+	}
+
+	public String getMotherId() {
+		return motherId;
+	}
+
+	public String getGuardianId1() {
+		return guardianId1;
+	}
+
+	public String getGuardianId2() {
+		return guardianId2;
+	}
+
+	public Integer getRoleId() {
+		return roleId;
+	}
+
+    public Student create(final StudentRequestDto studentRequestDto) {
+        Student student = new Student();
+        student.id = new ObjectId();
+        student.firstName = studentRequestDto.getFirstName();
+        student.email = studentRequestDto.getEmail();
+        student.suffix = studentRequestDto.getSuffix();
+        student.password = studentRequestDto.getPassword();
+        student.dob = studentRequestDto.getDob();
+        student.school = studentRequestDto.getSchool();
+        student.grade = studentRequestDto.getGrade();
+        student.tasks = studentRequestDto.getTasks();
+        student.reportCards = studentRequestDto.getReportCards();
+        student.progressReports = studentRequestDto.getProgressReports();
+        student.fatherId = studentRequestDto.getFatherId();
+        student.motherId = studentRequestDto.getMotherId();
+        student.guardianId1 = studentRequestDto.getGuardianId1();
+        student.guardianId2 = studentRequestDto.getGuardianId2();
+
+        final Address newAddress = Address.create(studentRequestDto.getNumber(), studentRequestDto.getAddress1(),
+                studentRequestDto.getAddress2(), studentRequestDto.getCity(),
+                studentRequestDto.getState(), studentRequestDto.getZip());
+        student.address = newAddress;
+
+        return student;
+    }
 }

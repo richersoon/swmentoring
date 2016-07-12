@@ -1,5 +1,6 @@
 package com.scratchwerk.mentoring;
 
+import com.scratchwerk.SwmentoringApplication;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.boot.test.SpringApplicationConfiguration;
