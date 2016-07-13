@@ -142,4 +142,29 @@ public class Student {
 
         return student;
     }
+
+	public Student update(final StudentRequestDto studentRequestDto) {
+		this.mentorId = studentRequestDto.getMentorId();
+		this.firstName = studentRequestDto.getFirstName();
+		this.email = studentRequestDto.getEmail();
+		this.suffix = studentRequestDto.getSuffix();
+		this.password = studentRequestDto.getPassword();
+		this.dob = studentRequestDto.getDob();
+		this.school = studentRequestDto.getSchool();
+		this.grade = studentRequestDto.getGrade();
+		this.tasks = studentRequestDto.getTasks();
+		this.reportCards = studentRequestDto.getReportCards();
+		this.progressReports = studentRequestDto.getProgressReports();
+		this.fatherId = studentRequestDto.getFatherId();
+		this.motherId = studentRequestDto.getMotherId();
+		this.guardianId1 = studentRequestDto.getGuardianId1();
+		this.guardianId2 = studentRequestDto.getGuardianId2();
+
+		final Address newAddress = Address.create(studentRequestDto.getNumber(), studentRequestDto.getAddress1(),
+				studentRequestDto.getAddress2(), studentRequestDto.getCity(),
+				studentRequestDto.getState(), studentRequestDto.getZip());
+		this.address = newAddress;
+
+		return this;
+	}
 }
