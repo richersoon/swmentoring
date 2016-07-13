@@ -4,9 +4,9 @@ import java.time.LocalDateTime;
 import java.util.List;
 
 /**
- * Created by richersoon on 7/12/16.
+ * Created by richersoon on 7/13/16.
  */
-public class StudentRequestDto {
+public class StudentDto {
 
     private String id;
     private String mentorId;
