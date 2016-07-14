@@ -6,7 +6,7 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.data.mongodb.repository.config.EnableMongoRepositories;
 
 @SpringBootApplication
-@ComponentScan("com.scratchwerk.service")
+@ComponentScan(basePackages = {"com.scratchwerk.service","com.scratchwerk.controller"})
 @EnableMongoRepositories(basePackages = "com.scratchwerk.repo")
 public class SwmentoringApplication {
 

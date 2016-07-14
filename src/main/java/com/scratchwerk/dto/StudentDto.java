@@ -18,7 +18,7 @@ public class StudentDto {
 
     private LocalDateTime dob;
     private String school;
-    private int grade;
+    private Integer grade;
     private List<String> tasks;
     private List<String> reportCards;
     private List<String> progressReports;
@@ -107,11 +107,11 @@ public class StudentDto {
         this.school = school;
     }
 
-    public int getGrade() {
+    public Integer getGrade() {
         return grade;
     }
 
-    public void setGrade(int grade) {
+    public void setGrade(Integer grade) {
         this.grade = grade;
     }
 

@@ -58,7 +58,7 @@ public class SwmentoringApplicationTests {
         assertEquals(expected.getPassword(), actual.getPassword());
         assertEquals(expected.getDob(), actual.getDob());
         assertEquals(expected.getSchool(), actual.getSchool());
-        assertEquals(expected.getGrade(), actual.getGrade());
+        assertEquals(expected.getGrade().intValue(), actual.getGrade().intValue());
         assertEquals(expected.getTasks(), actual.getTasks());
         assertEquals(expected.getReportCards(), actual.getReportCards());
         assertEquals(expected.getProgressReports(), actual.getProgressReports());
@@ -86,7 +86,7 @@ public class SwmentoringApplicationTests {
         assertEquals(initStudent.getPassword(), actual.getPassword());
         assertEquals(initStudent.getDob(), actual.getDob());
         assertEquals(initStudent.getSchool(), actual.getSchool());
-        assertEquals(initStudent.getGrade(), actual.getGrade());
+        assertEquals(initStudent.getGrade().intValue(), actual.getGrade().intValue());
         assertEquals(initStudent.getTasks(), actual.getTasks());
         assertEquals(initStudent.getReportCards(), actual.getReportCards());
         assertEquals(initStudent.getProgressReports(), actual.getProgressReports());
@@ -125,7 +125,7 @@ public class SwmentoringApplicationTests {
         assertEquals(initStudent.getPassword(), actual.getPassword());
         assertEquals(initStudent.getDob(), actual.getDob());
         assertEquals(initStudent.getSchool(), actual.getSchool());
-        assertEquals(initStudent.getGrade(), actual.getGrade());
+        assertEquals(initStudent.getGrade().intValue(), actual.getGrade().intValue());
         assertEquals(initStudent.getTasks(), actual.getTasks());
         assertEquals(initStudent.getReportCards(), actual.getReportCards());
         assertEquals(initStudent.getProgressReports(), actual.getProgressReports());

@@ -26,7 +26,7 @@ public class Student {
 
 	private LocalDateTime dob;
 	private String school;
-	private int grade;
+	private Integer grade;
 	private List<String> tasks;
 	private List<String> reportCards;
 	private List<String> progressReports;
@@ -76,7 +76,7 @@ public class Student {
 		return school;
 	}
 
-	public int getGrade() {
+	public Integer getGrade() {
 		return grade;
 	}
 
