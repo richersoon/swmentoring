@@ -4,11 +4,15 @@ import com.scratchwerk.dto.StudentDto;
 import com.scratchwerk.dto.StudentRequestDto;
 import com.scratchwerk.service.StudentService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.inject.Inject;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -21,8 +25,15 @@ public class StudentController {
     private StudentService studentService;
 
     @RequestMapping(value="/students", params = "register")
-    public String createForm(StudentRequestDto student) {
+    public String createForm(Model model) {
         return "students/create";
+    }
+
+    @RequestMapping(value="/students/{id}/update", method = RequestMethod.POST)
+    public String updateForm(@PathVariable String id, Model model) {
+        final StudentDto student = studentService.get(id);
+        model.addAttribute("student", student);
+        return "students/update";
     }
 
     @RequestMapping(value="/students/create", method = RequestMethod.POST)
@@ -36,5 +47,27 @@ public class StudentController {
         final StudentDto studentDto = studentService.get(id);
         model.put("student", studentDto);
         return "students/view";
+    }
+
+    @RequestMapping(value="/students/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public String delete(@PathVariable String id) {
+        studentService.delete(id);
+        return "Successfully deleted";
+    }
+
+    @ModelAttribute("allTasks")
+    public List<String> allTasks() {
+        return studentService.getTasks();
+    }
+
+    @ModelAttribute("allReportCards")
+    public List<String> allReportCards() {
+        return studentService.getReportCards();
+    }
+
+    @ModelAttribute("allProgressReports")
+    public List<String> allProgressReports() {
+        return studentService.getProgressReports();
     }
 }

@@ -8,6 +8,8 @@ import ma.glasnost.orika.MapperFacade;
 
 import javax.inject.Inject;
 import javax.inject.Named;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 
 /**
@@ -58,5 +60,20 @@ public class StudentService {
         Objects.requireNonNull(student);
 
         studentRepository.delete(id);
+    }
+
+    public List<String> getTasks() {
+        List<String> tasks = Arrays.asList("Task 1", "Task 2", "Task 3", "Task 4");
+        return tasks;
+    }
+
+    public List<String> getReportCards() {
+        List<String> tasks = Arrays.asList("Report 1", "Report 2", "Report 3", "Report 4");
+        return tasks;
+    }
+
+    public List<String> getProgressReports() {
+        List<String> tasks = Arrays.asList("Progress Report 1", "Progress Report 2", "Progress Report 3", "Progress Report 4");
+        return tasks;
     }
 }

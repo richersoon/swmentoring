@@ -1,48 +1,66 @@
-<html xmlns:th="http://www.thymeleaf.org">
-<form method="post" action="/students/create" role="form">
-    <div class="form-group">
-        <p>Mentor id: <input type="text" id="mentorId" name="mentorId"/></p>
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<div layout:fragment="content">
+    <form method="post" action="/students/create" role="form">
+        <div class="form-group">
+            <p>Mentor id: <input type="text" id="mentorId" name="mentorId"/></p>
 
-        <p>First name: <input type="text" id="firstName" name="firstName"/></p>
+            <p>First name: <input type="text" id="firstName" name="firstName"/></p>
 
-        <p>Last name: <input type="text" id="lastName" name="lastName"/></p>
+            <p>Last name: <input type="text" id="lastName" name="lastName"/></p>
 
-        <p>First name: <input type="text" id="email" name="email"/></p>
+            <p>First name: <input type="text" id="email" name="email"/></p>
 
-        <p>Suffix: <input type="text" id="suffix" name="suffix"/></p>
+            <p>Suffix: <input type="text" id="suffix" name="suffix"/></p>
 
-        <p>Password: <input type="text" id="password" name="password"/></p>
+            <p>Password: <input type="text" id="password" name="password"/></p>
 
-        <p>Date of Birth: <input type="text" id="dob" name="dob"/></p>
+            <p>Date of Birth: <input type="text" id="dob" name="dob"/></p>
 
-        <p>School: <input type="text" id="school" name="school"/></p>
+            <p>School: <input type="text" id="school" name="school"/></p>
 
-        <p>Grade: <input type="text" id="grade" name="grade"/></p>
+            <p>Grade: <input type="text" id="grade" name="grade"/></p>
 
-        <!--<input type="text" id="tasks" name="tasks"/>-->
-        <!--<input type="text" id="reportCards" name="reportCards"/>-->
-        <!--<input type="text" id="progressReports" name="progressReports"/>-->
+            <p>Tasks:
+                <select id="tasks" name="tasks" multiple="multiple">
+                    <option th:each="element : *{allTasks}" th:value="${element}" th:text="${element}"></option>
+                </select>
+            </p>
 
-        <p>Father Id: <input type="text" id="fatherId" name="fatherId"/></p>
+            <p>Report Cards:
+                <select id="reportCards" name="reportCards" multiple="multiple">
+                    <option th:each="element : *{allReportCards}" th:value="${element}" th:text="${element}"></option>
+                </select>
+            </p>
 
-        <p>Mother Id: <input type="text" id="motherId" name="motherId"/></p>
+            <p>Progress Reports:
+                <select id="progressReports" name="progressReports" multiple="multiple">
+                    <option th:each="element : *{allProgressReports}" th:value="${element}" th:text="${element}"></option>
+                </select>
+            </p>
 
-        <p>Guardian 1: <input type="text" id="guardianId1" name="guardianId1"/></p>
+            <p>Father Id: <input type="text" id="fatherId" name="fatherId"/></p>
 
-        <p>Guardian 2: <input type="text" id="guardianId2" name="guardianId2"/></p>
+            <p>Mother Id: <input type="text" id="motherId" name="motherId"/></p>
 
-        <p>Number: <input type="text" id="number" name="number"/></p>
+            <p>Guardian 1: <input type="text" id="guardianId1" name="guardianId1"/></p>
 
-        <p>Address 1: <input type="text" id="address1" name="address1"/></p>
+            <p>Guardian 2: <input type="text" id="guardianId2" name="guardianId2"/></p>
 
-        <p>Address 2: <input type="text" id="address2" name="address2"/></p>
+            <p>Number: <input type="text" id="number" name="number"/></p>
 
-        <p>City: <input type="text" id="city" name="city"/></p>
+            <p>Address 1: <input type="text" id="address1" name="address1"/></p>
 
-        <p>State: <input type="text" id="state" name="state"/></p>
+            <p>Address 2: <input type="text" id="address2" name="address2"/></p>
 
-        <p>Zip: <input type="text" id="zip" name="zip"/></p>
-    </div>
-    <button type="submit" id="submit" class="btn btn-primary">Submit</button>
-</form>
+            <p>City: <input type="text" id="city" name="city"/></p>
+
+            <p>State: <input type="text" id="state" name="state"/></p>
+
+            <p>Zip: <input type="text" id="zip" name="zip"/></p>
+        </div>
+        <button type="submit" id="submit" class="btn btn-primary">Submit</button>
+    </form>
+</div>
 </html>

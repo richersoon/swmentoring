@@ -1,44 +1,77 @@
-<html xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout">
+<html xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorator="layout">
+<div layout:fragment="content">
 
-        <p>Mentor id: <span th:text="${student.mentorId}"></span> </p>
+    <p>Mentor id: <span th:text="${student.mentorId}"></span></p>
 
-        <p>First name:  <span th:text="${student.firstName}"></span></p>
+    <p>First name: <span th:text="${student.firstName}"></span></p>
 
-        <p>Last name: <span th:text="${student.lastName}"></span></p>
+    <p>Last name: <span th:text="${student.lastName}"></span></p>
 
-        <p>First name: <span th:text="${student.email}"></span></p>
+    <p>First name: <span th:text="${student.email}"></span></p>
 
-        <p>Suffix: <span th:text="${student.suffix}"></span></p>
+    <p>Suffix: <span th:text="${student.suffix}"></span></p>
 
-        <p>Password: <span th:text="${student.password}"></span></p>
+    <p>Password: <span th:text="${student.password}"></span></p>
 
-        <p>Date of Birth: <span th:text="${student.dob}"></span></p>
+    <p>Date of Birth: <span th:text="${student.dob}"></span></p>
 
-        <p>School: <span th:text="${student.school}"></span></p>
+    <p>School: <span th:text="${student.school}"></span></p>
 
-        <p>Grade: <span th:text="${student.grade}"></span></p>
-        <!--<input type="text" id="tasks" name="tasks"/>-->
-        <!--<input type="text" id="reportCards" name="reportCards"/>-->
-        <!--<input type="text" id="progressReports" name="progressReports"/>-->
+    <p>Grade: <span th:text="${student.grade}"></span></p>
 
-        <p>Father Id: <span th:text="${student.fatherId}"></span></p>
+    <p>Tasks:
+        <span th:each="task,iter : ${student.tasks}">
+                <span th:text="${task}"></span><span th:if="${iter.index} != (${iter.size}-1)">,</span>
+        </span>
+    </p>
 
-        <p>Mother Id: <span th:text="${student.motherId}"></span></p>
+    <p>Report Cards:
+        <span th:each="reportCard,iter : ${student.reportCards}">
+                <span th:text="${reportCard}"></span><span th:if="${iter.index} != (${iter.size}-1)">,</span>
+        </span>
+    </p>
 
-        <p>Guardian 1: <span th:text="${student.guardianId1}"></span></p>
+    <p>Progress Reports:
+        <span th:each="progressReport,iter : ${student.progressReports}">
+                <span th:text="${progressReport}"></span><span th:if="${iter.index} != (${iter.size}-1)">,</span>
+        </span>
+    </p>
 
-        <p>Guardian 2: <span th:text="${student.guardianId2}"></span></p>
+    <!--<input type="text" id="tasks" name="tasks"/>-->
+    <!--<input type="text" id="reportCards" name="reportCards"/>-->
+    <!--<input type="text" id="progressReports" name="progressReports"/>-->
 
-        <p>Number: <span th:text="${student.number}"></span></p>
+    <p>Father Id: <span th:text="${student.fatherId}"></span></p>
 
-        <p>Address 1: <span th:text="${student.address1}"></span></p>
+    <p>Mother Id: <span th:text="${student.motherId}"></span></p>
 
-        <p>Address 2: <span th:text="${student.address2}"></span></p>
+    <p>Guardian 1: <span th:text="${student.guardianId1}"></span></p>
 
-        <p>City: <span th:text="${student.city}"></span></p>
+    <p>Guardian 2: <span th:text="${student.guardianId2}"></span></p>
 
-        <p>State: <span th:text="${student.state}"></span></p>
+    <p>Number: <span th:text="${student.number}"></span></p>
 
-        <p>Zip: <span th:text="${student.zip}"></span></p>
+    <p>Address 1: <span th:text="${student.address1}"></span></p>
 
+    <p>Address 2: <span th:text="${student.address2}"></span></p>
+
+    <p>City: <span th:text="${student.city}"></span></p>
+
+    <p>State: <span th:text="${student.state}"></span></p>
+
+    <p>Zip: <span th:text="${student.zip}"></span></p>
+
+    <p></p>
+
+    <form th:method="delete" th:action="@{'/students/{id}'(id=${student.id})}">
+        <button type="submit">Delete</button>
+    </form>
+
+    <form th:method="post" th:action="@{'/students/{id}/update'(id=${student.id})}">
+        <button type="submit">Update</button>
+    </form>
+
+</div>
 </html>
