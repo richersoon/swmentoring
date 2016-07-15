@@ -2,7 +2,7 @@
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorator="layout">
 <div layout:fragment="content">
-    <form action="#" th:action="@{'/students/{id}'(id=${student.id})}" th:method="put" >
+    <form th:action="@{'/students/{id}'(id=${student.id})}" th:method="put" >
         <div class="form-group">
             <p>Mentor id: <input type="text" id="mentorId" name="mentorId" th:value="${student.mentorId}"/></p>
 
@@ -37,7 +37,7 @@
             </p>
 
             <p>Progress Report:
-                <select id="progressReports" name="tasks" multiple="multiple">
+                <select id="progressReports" name="progressReports" multiple="multiple">
                     <option th:each="element : *{allProgressReports}" th:value="${element}" th:text="${element}"
                             th:selected="${student.progressReports.contains(element)}"></option>
                 </select>

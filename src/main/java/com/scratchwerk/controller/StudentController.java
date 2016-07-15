@@ -24,7 +24,7 @@ public class StudentController {
     @Inject
     private StudentService studentService;
 
-    @RequestMapping(value="/students", params = "register")
+    @RequestMapping(value="/students/create")
     public String createForm(Model model) {
         return "students/create";
     }
@@ -36,17 +36,23 @@ public class StudentController {
         return "students/update";
     }
 
-    @RequestMapping(value="/students/create", method = RequestMethod.POST)
+    @RequestMapping(value="/students", method = RequestMethod.POST)
     public String create(StudentRequestDto student) {
         final StudentDto studentDto = studentService.create(student);
         return "redirect:/students/" + studentDto.getId();
     }
 
     @RequestMapping(value="/students/{id}", method = RequestMethod.GET)
-    public String create(@PathVariable String id, Map<String, Object> model) {
+    public String get(@PathVariable String id, Map<String, Object> model) {
         final StudentDto studentDto = studentService.get(id);
         model.put("student", studentDto);
         return "students/view";
+    }
+
+    @RequestMapping(value="/students/{id}", method = RequestMethod.PUT)
+    public String update(@PathVariable String id, StudentRequestDto student) {
+        studentService.update(student);
+        return "redirect:/students/" + id;
     }
 
     @RequestMapping(value="/students/{id}", method = RequestMethod.DELETE)
